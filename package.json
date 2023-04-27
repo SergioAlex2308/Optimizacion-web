@@ -27,8 +27,8 @@
     "moment": "^2.24.0",
     "prettier": "1.19.1",
     "pretty-quick": "^2.0.1",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
   }
 }
