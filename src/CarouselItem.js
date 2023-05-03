@@ -1,6 +1,10 @@
 import h from 'hyperscript'
 import moment from 'moment'
 
+import 'lazysizes'
+// import a plugin
+import 'lazysizes/plugins/parent-fit/ls.parent-fit'
+
 const relativeDate = dateStr => moment(dateStr, 'YYYY-MM-DD').fromNow()
 
 const Controls = ({ slug, youtubeVideoId }) =>
@@ -34,6 +38,31 @@ const Controls = ({ slug, youtubeVideoId }) =>
     )
   )
 
+
+
+const options = {
+  root: null, // el elemento que se toma como punto de referencia para el observer
+  rootMargin: '0px', // margen adicional que se agrega al elemento de referencia
+  threshold: 1.0, // porcentaje de intersección requerido para ejecutar el callback
+}
+
+const callback = (entries, observer) => {
+  entries.forEach(entry => {
+    // Aquí se puede verificar si el elemento es visible o no
+    if (entry.isIntersecting) {
+      console.log('El elemento es visible', observer)
+    } else {
+      console.log('El elemento no es visible')
+    }
+  })
+}
+const observer = new IntersectionObserver(callback, options)
+
+const targetElement = document
+  .querySelectorAll('div.carousel-item')
+  .forEach(img => observer.observe(img))
+// observer.observe(targetElement)
+
 const CarouselItem = ({
   imageUrl,
   title,
@@ -41,10 +70,10 @@ const CarouselItem = ({
   slug,
   youtubeVideoId,
   startDate,
-}) =>
+}) => 
   h(
     'div.carousel-item',
-    h('img', { src: imageUrl, alt: '' }),
+    h('img', { src: imageUrl, alt: ' ', loading: 'lazy' }),
     h(
       'div',
       Controls({ slug, youtubeVideoId }),

@@ -56,21 +56,15 @@ header {
   width: 100%;
 }
 
-.logo {
+.header_logo {
   margin-left: 30px;
-  width: 200px;
-  height: 61px;
-  background-image: url(/assets/logo-platzi-video.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 }
 
-.menu {
+.header_menu {
   margin-right: 30px;
 }
 
-.menu ul {
+.header_menu ul {
   display: none;
   list-style: none;
   margin: 0px 0px 0px -14px;
@@ -80,31 +74,36 @@ header {
   text-align: right;
 }
 
-.menu:hover ul,
+.header_menu:hover ul,
 ul:hover {
   display: block;
 }
 
-.menu li {
+.header_menu li {
   margin: 10px 0px;
 }
 
-.menu li a {
+.header_menu li a {
   color: white;
   text-decoration: none;
 }
 
-.menu li a:hover {
+.header_menu li a:hover {
   text-decoration: underline;
 }
 
-.menu > div {
+.header_menu > div {
   align-items: center;
   display: flex;
   cursor: pointer;
 }
 
-.menu > div > img {
+.header_img {
+  margin-right: 8px;
+  width: 40px;
+}
+
+.header_menu--profile > svg {
   margin-right: 8px;
   width: 40px;
 }
@@ -189,6 +188,7 @@ footer a:hover {
 }
 
 .carousel-item {
+  will-change: transform;
   border-radius: 20px;
   position: relative;
   display: inline-block;
@@ -199,7 +199,18 @@ footer a:hover {
   cursor: pointer;
   transition: 450ms all;
   transform-origin: center left;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 20px;
+  opacity: 0.4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
 }
 /* Change opacity to all items but current */
 .carousel > div:hover .carousel-item:not(:hover) {
@@ -208,11 +219,15 @@ footer a:hover {
 /* Scale up current */
 .carousel-item:hover {
   transform: scale(1.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+}
+
+.carousel-item:hover::before {
+  opacity: 1;
 }
 /* Move subsecuent item */
 .carousel-item:hover + .carousel-item {
-  margin-left: 100px;
+  /* margin-left: 100px; */
+  transform: translateX(100px)
 }
 
 .carousel-item > img {
